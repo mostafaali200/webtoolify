@@ -1,0 +1,29 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+
+  "editor.formatOnSave": true,
+
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
+  ],
+
+  "tailwindCSS.emmetCompletions": true,
+
+  "files.exclude": {
+    "**/.next": true,
+    "**/node_modules": true
+  }
+}
