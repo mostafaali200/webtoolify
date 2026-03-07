@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     "A production-ready SEO and web utilities platform for site owners, developers, marketers, and content creators.",
 
-  url: "https://webtoolify.com",
+  url: "https://webtoolify.vercel.app",
 
   ogImage: "https://webtoolify.com/og-image.png",
 
