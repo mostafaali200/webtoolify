@@ -2,13 +2,11 @@ export const siteConfig = {
   name: "WebToolify",
   shortName: "WebToolify",
 
-  description:
-    "A production-ready SEO and web utilities platform for site owners, developers, marketers, and content creators.",
-
+   description:
+   "Free SEO tools and web utilities for developers, marketers, and site owners. Generate meta tags, robots.txt files, slugs, schema markup, and more.",
   url: "https://webtoolify.vercel.app",
 
-  ogImage: "https://webtoolify.com/og-image.png",
-
+   ogImage: "https://webtoolify.vercel.app/og-image.png",
   creator: "WebToolify",
 
   keywords: [

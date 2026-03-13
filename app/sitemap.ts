@@ -5,8 +5,10 @@ import { toolCategories } from "@/data/tool-categories";
 import { siteConfig } from "@/data/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = siteConfig.url.replace(/\/$/, "");
+
   const staticPages = [
-    "",
+    "/",
     "/tools",
     "/blog",
     "/about",
@@ -16,32 +18,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/disclaimer"
   ];
 
+  const now = new Date();
+
   return [
     ...staticPages.map((path) => ({
-      url: `${siteConfig.url}${path}`,
-      lastModified: new Date(),
+      url: `${baseUrl}${path}`,
+      lastModified: now,
       changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : 0.8
+      priority: path === "/" ? 1 : 0.8
     })),
+
     ...toolCategories.map((category) => ({
-      url: `${siteConfig.url}/tools/category/${category.slug}`,
-      lastModified: new Date(),
+      url: `${baseUrl}/tools/category/${category.slug}`,
+      lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8
     })),
+
     ...tools
       .filter((tool) => tool.status === "published")
       .map((tool) => ({
-        url: `${siteConfig.url}/tools/${tool.slug}`,
-        lastModified: new Date(),
+        url: `${baseUrl}/tools/${tool.slug}`,
+        lastModified: now,
         changeFrequency: "weekly" as const,
         priority: 0.9
       })),
-    ...blogPosts.map((post) => ({
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      lastModified: new Date(post.publishedAt),
-      changeFrequency: "monthly" as const,
-      priority: 0.7
-    }))
+
+    ...blogPosts.map((post) => {
+      const publishedDate = new Date(post.publishedAt);
+      const safeLastModified = publishedDate > now ? now : publishedDate;
+
+      return {
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: safeLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.7
+      };
+    })
   ];
 }
